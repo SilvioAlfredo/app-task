@@ -1,0 +1,30 @@
+// App Task — task-list manager (Rust + Slint).
+// Copyright (C) 2026 Alfredo Riveros.
+// SPDX-License-Identifier: GPL-3.0-only
+// See LICENSE for details.
+import { Button, LineEdit } from "std-widgets.slint";
+import { AppTheme } from "../theme.slint";
+
+// Input + botón para crear tareas.
+export component AddTaskBar inherits Rectangle {
+    in-out property <string> new-title;
+    callback add();
+
+    background: AppTheme.card-bg;
+
+    HorizontalLayout {
+        padding: 10px;
+        spacing: 8px;
+
+        LineEdit {
+            text <=> root.new-title;
+            placeholder-text: @tr("Nueva tarea...");
+            accepted => { root.add(); }
+        }
+        Button {
+            text: @tr("Añadir");
+            primary: true;
+            clicked => { root.add(); }
+        }
+    }
+}

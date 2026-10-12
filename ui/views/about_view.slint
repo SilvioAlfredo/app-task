@@ -1,0 +1,133 @@
+// App Task — task-list manager (Rust + Slint).
+// Copyright (C) 2026 Alfredo Riveros.
+// SPDX-License-Identifier: GPL-3.0-only
+// See LICENSE for details.
+import { Button, ScrollView } from "std-widgets.slint";
+import { AppTheme } from "../theme.slint";
+
+// Acerca de, minimalista: descripción + 4 enlaces (GitHub, portafolio, LinkedIn, donar).
+export component AboutView inherits Rectangle {
+    in property <string> about-dev;
+    in property <string> about-project;
+    in property <string> about-version;
+    in property <string> about-github;
+    in property <string> about-portfolio;
+    in property <string> about-linkedin;
+    in property <string> about-donate;
+
+    callback open-url(string);
+
+    background: AppTheme.card-bg;
+    border-radius: 10px;
+    clip: true;
+
+    ScrollView {
+        VerticalLayout {
+            padding: 28px;
+            spacing: 10px;
+            alignment: start;
+
+            Text {
+                text: @tr("App Task {}", root.about-version);
+                font-size: 22px;
+                font-weight: 700;
+                color: AppTheme.text;
+            }
+            Text {
+                text: @tr("por {}", root.about-dev);
+                font-size: 14px;
+                font-weight: 600;
+                color: AppTheme.text-muted;
+            }
+            Text {
+                text: @tr("Gestor de listas de tareas de escritorio: checklist con descripciones, filtros por estado, destacados, tema claro/oscuro y guardado local automático en JSON. Desarrollado en Rust con interfaz declarativa en Slint, para Linux (Fedora). Sin cuentas ni nube: tus tareas quedan en tu equipo, en ~/.local/share/app-task/tasks.json.");
+                font-size: 13px;
+                color: AppTheme.text-muted;
+                wrap: word-wrap;
+            }
+
+            Rectangle { height: 8px; }
+
+            Text {
+                text: @tr("GitHub");
+                font-size: 13px;
+                font-weight: 700;
+                color: AppTheme.text;
+            }
+            HorizontalLayout {
+                spacing: 8px;
+                Text {
+                    text: root.about-github;
+                    font-size: 12px;
+                    color: AppTheme.link;
+                    vertical-alignment: center;
+                }
+                Button {
+                    text: @tr("Abrir");
+                    clicked => { root.open-url(root.about-github); }
+                }
+            }
+
+            Text {
+                text: @tr("Portafolio");
+                font-size: 13px;
+                font-weight: 700;
+                color: AppTheme.text;
+            }
+            HorizontalLayout {
+                spacing: 8px;
+                Text {
+                    text: root.about-portfolio;
+                    font-size: 12px;
+                    color: AppTheme.link;
+                    vertical-alignment: center;
+                }
+                Button {
+                    text: @tr("Abrir");
+                    clicked => { root.open-url(root.about-portfolio); }
+                }
+            }
+
+            Text {
+                text: @tr("LinkedIn");
+                font-size: 13px;
+                font-weight: 700;
+                color: AppTheme.text;
+            }
+            HorizontalLayout {
+                spacing: 8px;
+                Text {
+                    text: root.about-linkedin;
+                    font-size: 12px;
+                    color: AppTheme.link;
+                    vertical-alignment: center;
+                }
+                Button {
+                    text: @tr("Abrir");
+                    clicked => { root.open-url(root.about-linkedin); }
+                }
+            }
+
+            Text {
+                text: @tr("Apoyar el proyecto");
+                font-size: 13px;
+                font-weight: 700;
+                color: AppTheme.text;
+            }
+            HorizontalLayout {
+                spacing: 8px;
+                Text {
+                    text: root.about-donate;
+                    font-size: 12px;
+                    color: AppTheme.link;
+                    vertical-alignment: center;
+                }
+                Button {
+                    text: @tr("♥ Donar con PayPal");
+                    primary: true;
+                    clicked => { root.open-url(root.about-donate); }
+                }
+            }
+        }
+    }
+}

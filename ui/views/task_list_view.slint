@@ -1,0 +1,79 @@
+// App Task — task-list manager (Rust + Slint).
+// Copyright (C) 2026 Alfredo Riveros.
+// SPDX-License-Identifier: GPL-3.0-only
+// See LICENSE for details.
+import { ScrollView } from "std-widgets.slint";
+import { AppTheme } from "../theme.slint";
+import { TaskData } from "../models.slint";
+import { TaskRow } from "../components/task_row.slint";
+import { PendingHeader } from "../components/pending_header.slint";
+import { AddTaskBar } from "../components/add_task_bar.slint";
+import { FilterBar } from "../components/filter_bar.slint";
+
+// Tarjeta izquierda: cabecera + alta + filtros + lista con scroll.
+export component TaskListView inherits Rectangle {
+    in-out property <[TaskData]> tasks;
+    in-out property <int> selected-index;
+    in-out property <int> pending-count;
+    in-out property <string> new-task-title;
+    in-out property <string> filter-mode;
+    in-out property <bool> list-collapsed;
+
+    callback add-task();
+    callback toggle-completed(int);
+    callback toggle-star(int);
+    callback delete-task(int);
+    callback select-task(int);
+
+    background: AppTheme.card-bg;
+    border-radius: 10px;
+    clip: true;
+
+    VerticalLayout {
+        spacing: 0px;
+
+        PendingHeader {
+            pending-count: root.pending-count;
+            collapsed: root.list-collapsed;
+            toggle-collapse => {
+                root.list-collapsed = !root.list-collapsed;
+            }
+        }
+
+        if !root.list-collapsed : VerticalLayout {
+            spacing: 0px;
+
+            AddTaskBar {
+                new-title <=> root.new-task-title;
+                add => { root.add-task(); }
+            }
+
+            FilterBar {
+                filter-mode: root.filter-mode;
+                set-filter(mode) => {
+                    root.filter-mode = mode;
+                }
+            }
+
+            ScrollView {
+                min-height: 380px;
+                vertical-stretch: 1;
+
+                VerticalLayout {
+                    spacing: 1px;
+
+                    for task[idx] in root.tasks : TaskRow {
+                        visible: root.filter-mode == "all" || (root.filter-mode == "pending" && !task.completed) || (root.filter-mode == "done" && task.completed) || (root.filter-mode == "starred" && task.starred);
+                        height: self.visible ? (task.details != "" ? 64px : 48px) : 0px;
+                        task: task;
+                        selected: root.selected-index == idx;
+                        toggled => { root.toggle-completed(idx); }
+                        chosen => { root.select-task(idx); }
+                        starred => { root.toggle-star(idx); }
+                        deleted => { root.delete-task(idx); }
+                    }
+                }
+            }
+        }
+    }
+}

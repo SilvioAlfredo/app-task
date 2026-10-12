@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.silvioalfredo.apptask</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <name>App Task</name>
+  <summary>Task-list manager with checklists and descriptions</summary>
+  <summary xml:lang="es">Gestor de listas de tareas con checklist y descripciones</summary>
+  <description>
+    <p>Desktop task-list manager: checklists with descriptions, status filters, starred items, multiple lists, light/dark theme and automatic local JSON saving. Built in Rust with a declarative Slint interface.</p>
+    <p xml:lang="es">Gestor de listas de tareas de escritorio: checklist con descripciones, filtros por estado, destacados, múltiples listas, tema claro/oscuro y guardado local automático en JSON. Desarrollado en Rust con interfaz declarativa en Slint.</p>
+    <p>No accounts, no cloud: your tasks stay on your machine.</p>
+    <p xml:lang="es">Sin cuentas ni nube: tus tareas quedan en tu equipo.</p>
+  </description>
+  <launchable type="desktop-id">io.github.silvioalfredo.apptask.desktop</launchable>
+  <icon type="stock">io.github.silvioalfredo.apptask</icon>
+  <categories>
+    <category>Office</category>
+    <category>ProjectManagement</category>
+  </categories>
+  <keywords>
+    <keyword>tasks</keyword>
+    <keyword>todo</keyword>
+    <keyword>checklist</keyword>
+    <keyword xml:lang="es">tareas</keyword>
+    <keyword xml:lang="es">pendientes</keyword>
+  </keywords>
+  <url type="homepage">https://silvioalfredo.github.io/Portafolio-Riveros-Silvio/</url>
+  <url type="bugtracker">https://github.com/SilvioAlfredo/app-task/issues</url>
+  <url type="vcs-browser">https://github.com/SilvioAlfredo/app-task</url>
+  <url type="donation">https://paypal.me/SilvioRiverosDev</url>
+  <developer>
+    <name>Alfredo Riveros</name>
+  </developer>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">none</content_attribute>
+    <content_attribute id="violence-fantasy">none</content_attribute>
+    <content_attribute id="violence-realistic">none</content_attribute>
+    <content_attribute id="violence-bloodshed">none</content_attribute>
+    <content_attribute id="violence-sexual">none</content_attribute>
+    <content_attribute id="violence-desecration">none</content_attribute>
+    <content_attribute id="violence-slavery">none</content_attribute>
+    <content_attribute id="violence-worship">none</content_attribute>
+    <content_attribute id="drugs-alcohol">none</content_attribute>
+    <content_attribute id="drugs-narcotics">none</content_attribute>
+    <content_attribute id="drugs-tobacco">none</content_attribute>
+    <content_attribute id="sex-nudity">none</content_attribute>
+    <content_attribute id="sex-themes">none</content_attribute>
+    <content_attribute id="language-profanity">none</content_attribute>
+    <content_attribute id="language-humor">none</content_attribute>
+    <content_attribute id="language-discrimination">none</content_attribute>
+    <content_attribute id="social-chat">none</content_attribute>
+    <content_attribute id="social-info">none</content_attribute>
+    <content_attribute id="social-audio">none</content_attribute>
+    <content_attribute id="social-location">none</content_attribute>
+    <content_attribute id="social-contacts">none</content_attribute>
+    <content_attribute id="money-purchasing">none</content_attribute>
+    <content_attribute id="money-gambling">none</content_attribute>
+  </content_rating>
+  <releases>
+    <release version="0.1.0" date="2026-10-12">
+      <description>
+        <p>First release: multiple lists, checklist with descriptions, filters, light/dark theme, Spanish/English, JSON export.</p>
+      </description>
+    </release>
+  </releases>
+  <!-- TODO: Flathub exige capturas. Captúralas en tu equipo y descomenta:
+  <screenshots>
+    <screenshot type="default">
+      <caption>Task list with details panel</caption>
+      <caption xml:lang="es">Lista de tareas con panel de detalles</caption>
+      <image>https://github.com/SilvioAlfredo/app-task/raw/main/data/screenshots/tasks.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>About view</caption>
+      <caption xml:lang="es">Vista Acerca de</caption>
+      <image>https://github.com/SilvioAlfredo/app-task/raw/main/data/screenshots/about.png</image>
+    </screenshot>
+  </screenshots>
+  -->
+</component>

@@ -1,0 +1,4 @@
+/target/
+# Datos locales del usuario (no versionar)
+tasks.json
+lists.json

@@ -1,0 +1,55 @@
+// App Task — task-list manager (Rust + Slint).
+// Copyright (C) 2026 Alfredo Riveros.
+// SPDX-License-Identifier: GPL-3.0-only
+// See LICENSE for details.
+import { Button } from "std-widgets.slint";
+import { AppTheme } from "../theme.slint";
+
+// Cabecera "Pending" con contador y colapso.
+export component PendingHeader inherits Rectangle {
+    in property <int> pending-count;
+    in property <bool> collapsed;
+
+    callback toggle-collapse();
+
+    background: AppTheme.header-bg;
+    height: 44px;
+
+    HorizontalLayout {
+        padding-left: 14px;
+        padding-right: 10px;
+        alignment: space-between;
+
+        Text {
+            text: @tr("Pending");
+            color: AppTheme.text-pending;
+            font-size: 14px;
+            font-weight: 600;
+            vertical-alignment: center;
+        }
+
+        HorizontalLayout {
+            spacing: 8px;
+
+            Rectangle {
+                background: #000000;
+                border-radius: 12px;
+                width: 36px;
+                height: 24px;
+
+                Text {
+                    text: root.pending-count;
+                    color: white;
+                    font-size: 13px;
+                    horizontal-alignment: center;
+                    vertical-alignment: center;
+                }
+            }
+
+            Button {
+                text: root.collapsed ? "∨" : "∧";
+                clicked => { root.toggle-collapse(); }
+            }
+        }
+    }
+}

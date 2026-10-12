@@ -1,0 +1,121 @@
+// App Task — task-list manager (Rust + Slint).
+// Copyright (C) 2026 Alfredo Riveros.
+// SPDX-License-Identifier: GPL-3.0-only
+// See LICENSE for details.
+import { Button, LineEdit } from "std-widgets.slint";
+import { AppTheme } from "../theme.slint";
+
+// Panel desplegable del menú ☰: cambiar/crear/renombrar/eliminar listas y exportar.
+export component MenuPanel inherits Rectangle {
+    in property <[string]> lists-names;
+    in property <int> active-list;
+    in property <string> current-name;
+    in property <string> export-path;
+
+    callback switch-list(int);
+    callback delete-list(int);
+    callback create-list(string);
+    callback rename-list(string);
+    callback export-list();
+
+    // "" | "new" | "rename"
+    property <string> dialog-mode: "";
+
+    background: AppTheme.card-bg;
+    border-radius: 10px;
+    clip: true;
+
+    VerticalLayout {
+        padding: 12px;
+        spacing: 8px;
+
+        Text {
+            text: @tr("Mis listas");
+            font-size: 15px;
+            font-weight: 700;
+            color: AppTheme.text;
+        }
+
+        for name[i] in root.lists-names : HorizontalLayout {
+            spacing: 8px;
+
+            Text {
+                text: (i == root.active-list ? "● " : "○ ") + name;
+                font-size: 14px;
+                color: i == root.active-list ? AppTheme.text : AppTheme.text-muted;
+                vertical-alignment: center;
+                overflow: elide;
+            }
+
+            Button {
+                text: @tr("Abrir");
+                enabled: i != root.active-list;
+                clicked => { root.switch-list(i); }
+            }
+            Button {
+                text: "🗑";
+                enabled: root.lists-names.length > 1;
+                clicked => { root.delete-list(i); }
+            }
+        }
+
+        HorizontalLayout {
+            spacing: 8px;
+
+            Button {
+                text: @tr("+ Nueva lista");
+                clicked => { root.dialog-mode = "new"; }
+            }
+            Button {
+                text: @tr("Renombrar");
+                clicked => { root.dialog-mode = "rename"; }
+            }
+            Button {
+                text: @tr("Exportar JSON");
+                clicked => { root.export-list(); }
+            }
+        }
+
+        if root.dialog-mode != "" : HorizontalLayout {
+            spacing: 8px;
+
+            dialog-input := LineEdit {
+                placeholder-text: root.dialog-mode == "new" ? @tr("Nombre de la nueva lista...") : root.current-name;
+                accepted => {
+                    if (root.dialog-mode == "new") {
+                        root.create-list(dialog-input.text == "" ? @tr("Nueva lista") : dialog-input.text);
+                    } else {
+                        if (dialog-input.text != "") {
+                            root.rename-list(dialog-input.text);
+                        }
+                    }
+                    root.dialog-mode = "";
+                }
+            }
+            Button {
+                text: @tr("Guardar");
+                clicked => {
+                    if (root.dialog-mode == "new") {
+                        root.create-list(dialog-input.text == "" ? @tr("Nueva lista") : dialog-input.text);
+                    } else {
+                        if (dialog-input.text != "") {
+                            root.rename-list(dialog-input.text);
+                        }
+                    }
+                    root.dialog-mode = "";
+                }
+            }
+            Button {
+                text: @tr("Cancelar");
+                clicked => { root.dialog-mode = ""; }
+            }
+        }
+
+        if root.export-path != "" : Text {
+            text: @tr("Exportado a {}", root.export-path);
+            font-size: 12px;
+            color: AppTheme.text-muted;
+            wrap: word-wrap;
+        }
+    }
+}

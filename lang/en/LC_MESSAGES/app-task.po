@@ -1,0 +1,249 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: app-task 0.1.0\n"
+"PO-Revision-Date: 2026-10-12 19:50+0000\n"
+"Last-Translator: Alfredo Riveros\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ui/components/top_bar.slint:17
+msgctxt "TopBar"
+msgid "☰   Actualización apps"
+msgstr "☰   App Updates"
+
+#: ui/components/top_bar.slint:28
+msgctxt "TopBar"
+msgid "📋 Tareas"
+msgstr "📋 Tasks"
+
+#: ui/components/top_bar.slint:33
+msgctxt "TopBar"
+msgid "ℹ Acerca de"
+msgstr "ℹ About"
+
+#: ui/components/top_bar.slint:38
+msgctxt "TopBar"
+msgid "☀ Claro"
+msgstr "☀ Light"
+
+#: ui/components/top_bar.slint:38
+msgctxt "TopBar"
+msgid "🌙 Oscuro"
+msgstr "🌙 Dark"
+
+#: ui/components/pending_header.slint:20
+msgctxt "PendingHeader"
+msgid "Pending"
+msgstr "Pending"
+
+#: ui/components/add_task_bar.slint:17
+msgctxt "AddTaskBar"
+msgid "Nueva tarea..."
+msgstr "New task..."
+
+#: ui/components/add_task_bar.slint:21
+msgctxt "AddTaskBar"
+msgid "Añadir"
+msgstr "Add"
+
+#: ui/components/filter_bar.slint:17
+msgctxt "FilterBar"
+msgid "Todas"
+msgstr "All"
+
+#: ui/components/filter_bar.slint:22
+msgctxt "FilterBar"
+msgid "Pendientes"
+msgstr "Pending"
+
+#: ui/components/filter_bar.slint:27
+msgctxt "FilterBar"
+msgid "Hechas"
+msgstr "Done"
+
+#: ui/components/filter_bar.slint:32
+msgctxt "FilterBar"
+msgid "★ Destacadas"
+msgstr "★ Starred"
+
+#: ui/views/details_panel.slint:27
+msgctxt "DetailsPanel"
+msgid "Detalles de la tarea"
+msgstr "Task details"
+
+#: ui/views/details_panel.slint:37
+msgctxt "DetailsPanel"
+msgid "Título"
+msgstr "Title"
+
+#: ui/views/details_panel.slint:43
+msgctxt "DetailsPanel"
+msgid "Título de la tarea"
+msgstr "Task title"
+
+#: ui/views/details_panel.slint:49
+msgctxt "DetailsPanel"
+msgid "Completada"
+msgstr "Completed"
+
+#: ui/views/details_panel.slint:53
+msgctxt "DetailsPanel"
+msgid "★ Destacada"
+msgstr "★ Starred"
+
+#: ui/views/details_panel.slint:53
+msgctxt "DetailsPanel"
+msgid "☆ Destacar"
+msgstr "☆ Star"
+
+#: ui/views/details_panel.slint:59
+msgctxt "DetailsPanel"
+msgid "Descripción / notas"
+msgstr "Description / notes"
+
+#: ui/views/details_panel.slint:65
+msgctxt "DetailsPanel"
+msgid "Agrega detalles, pasos, enlaces..."
+msgstr "Add details, steps, links..."
+
+#: ui/views/details_panel.slint:72
+msgctxt "DetailsPanel"
+msgid "Guardar"
+msgstr "Save"
+
+#: ui/views/details_panel.slint:77
+msgctxt "DetailsPanel"
+msgid "Cerrar"
+msgstr "Close"
+
+#: ui/views/details_panel.slint:81
+msgctxt "DetailsPanel"
+msgid "Eliminar"
+msgstr "Delete"
+
+#: ui/views/details_panel.slint:86
+msgctxt "DetailsPanel"
+msgid ""
+"Haz clic en una tarea para ver su descripción. Los cambios se guardan con "
+"Guardar."
+msgstr ""
+"Click a task to see its description. Changes are saved with Save."
+
+#: ui/views/details_panel.slint:96
+msgctxt "DetailsPanel"
+msgid "Haz clic en cualquier tarea de la lista para ver su descripción aquí."
+msgstr "Click any task in the list to see its description here."
+
+#: ui/views/details_panel.slint:102
+msgctxt "DetailsPanel"
+msgid ""
+"Puedes marcar ✓, destacar ★, filtrar y añadir tareas nuevas. Todo se "
+"guarda automáticamente."
+msgstr ""
+"You can check ✓, star ★, filter and add new tasks. Everything is saved "
+"automatically."
+
+#: ui/views/about_view.slint:27
+msgctxt "AboutView"
+msgid "App Task {}"
+msgstr "App Task {}"
+
+#: ui/views/about_view.slint:33
+msgctxt "AboutView"
+msgid "por {}"
+msgstr "by {}"
+
+#: ui/views/about_view.slint:39
+msgctxt "AboutView"
+msgid ""
+"Gestor de listas de tareas de escritorio: checklist con descripciones, "
+"filtros por estado, destacados, tema claro/oscuro y guardado local "
+"automático en JSON. Desarrollado en Rust con interfaz declarativa en Slint, "
+"para Linux (Fedora). Sin cuentas ni nube: tus tareas quedan en tu equipo, en "
+"~/.local/share/app-task/tasks.json."
+msgstr ""
+"Desktop task-list manager: checklist with descriptions, status filters, "
+"starred items, light/dark theme and automatic local JSON saving. Built in "
+"Rust with a declarative Slint UI, for Linux (Fedora). No accounts or cloud: "
+"your tasks stay on your machine, in ~/.local/share/app-task/tasks.json."
+
+#: ui/views/about_view.slint:48
+msgctxt "AboutView"
+msgid "GitHub"
+msgstr "GitHub"
+
+#: ui/views/about_view.slint:62
+msgctxt "AboutView"
+msgid "Abrir"
+msgstr "Open"
+
+#: ui/views/about_view.slint:68
+msgctxt "AboutView"
+msgid "Portafolio"
+msgstr "Portfolio"
+
+#: ui/views/about_view.slint:88
+msgctxt "AboutView"
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: ui/views/about_view.slint:108
+msgctxt "AboutView"
+msgid "Apoyar el proyecto"
+msgstr "Support the project"
+
+#: ui/views/about_view.slint:122
+msgctxt "AboutView"
+msgid "♥ Donar con PayPal"
+msgstr "♥ Donate with PayPal"
+
+#: ui/app.slint:10
+msgctxt "App"
+msgid "App Task - Lista de tareas"
+msgstr "App Task - Task list"
+
+# ===== Menú ☰ (MenuPanel) =====
+msgctxt "MenuPanel"
+msgid "Mis listas"
+msgstr "My lists"
+
+msgctxt "MenuPanel"
+msgid "Abrir"
+msgstr "Open"
+
+msgctxt "MenuPanel"
+msgid "+ Nueva lista"
+msgstr "+ New list"
+
+msgctxt "MenuPanel"
+msgid "Renombrar"
+msgstr "Rename"
+
+msgctxt "MenuPanel"
+msgid "Exportar JSON"
+msgstr "Export JSON"
+
+msgctxt "MenuPanel"
+msgid "Nombre de la nueva lista..."
+msgstr "New list name..."
+
+msgctxt "MenuPanel"
+msgid "Guardar"
+msgstr "Save"
+
+msgctxt "MenuPanel"
+msgid "Cancelar"
+msgstr "Cancel"
+
+msgctxt "MenuPanel"
+msgid "Nueva lista"
+msgstr "New list"
+
+msgctxt "MenuPanel"
+msgid "Exportado a {}"
+msgstr "Exported to {}"

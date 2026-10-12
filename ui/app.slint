@@ -1,0 +1,153 @@
+// App Task — task-list manager (Rust + Slint).
+// Copyright (C) 2026 Alfredo Riveros.
+// SPDX-License-Identifier: GPL-3.0-only
+// See LICENSE for details.
+import { AppTheme } from "theme.slint";
+import { TaskData } from "models.slint";
+import { TopBar } from "components/top_bar.slint";
+import { MenuPanel } from "components/menu_panel.slint";
+import { TaskListView } from "views/task_list_view.slint";
+import { DetailsPanel } from "views/details_panel.slint";
+import { AboutView } from "views/about_view.slint";
+
+// Ventana raíz: solo estado + composición. Sin estilos ni lógica visual aquí.
+export component App inherits Window {
+    title: @tr("App Task - Lista de tareas");
+    preferred-width: 1000px;
+    preferred-height: 680px;
+    background: AppTheme.window-bg;
+
+    // ---- Estado de tareas ----
+    in-out property <[TaskData]> tasks;
+    in-out property <int> selected-index: -1;
+    in-out property <string> new-task-title;
+    in-out property <string> detail-title;
+    in-out property <string> detail-text;
+    in-out property <bool> detail-completed;
+    in-out property <bool> detail-starred;
+    in-out property <int> pending-count: 0;
+    in-out property <string> filter-mode: "all";
+    in-out property <bool> list-collapsed: false;
+
+    // ---- Listas (menú ☰) ----
+    in-out property <[string]> lists-names;
+    in-out property <int> active-list: 0;
+    in-out property <string> list-name: "Actualización apps";
+    in-out property <bool> menu-open: false;
+    in-out property <string> export-path: "";
+
+    // ---- Navegación e idioma ----
+    in-out property <string> view: "tasks"; // "tasks" | "about"
+    in-out property <string> current-lang: "es"; // "es" | "en"
+
+    // Tema: vive en App para que Rust pueda leerlo/guardarlo,
+    // y se propaga al global AppTheme que usan los componentes.
+    in-out property <bool> dark-mode: true;
+    changed dark-mode => {
+        AppTheme.dark-mode = root.dark-mode;
+    }
+
+    // ---- Acerca de (desde Rust) ----
+    in-out property <string> about-dev: "Alfredo";
+    in-out property <string> about-project: "App Task — Lista de tareas en Rust + Slint";
+    in-out property <string> about-version: "v0.1.0";
+    in-out property <string> about-github: "https://github.com/SilvioAlfredo";
+    in-out property <string> about-portfolio: "https://silvioalfredo.github.io/Portafolio-Riveros-Silvio/";
+    in-out property <string> about-donate: "https://paypal.me/SilvioRiverosDev";
+    in-out property <string> about-linkedin: "https://www.linkedin.com/in/silvioriveros/";
+
+    // ---- Acciones (implementadas en Rust) ----
+    callback add-task();
+    callback toggle-completed(int);
+    callback toggle-star(int);
+    callback delete-task(int);
+    callback select-task(int);
+    callback save-details();
+    callback clear-selection();
+    callback toggle-detail-star();
+    callback toggle-theme();
+    callback open-url(string);
+    callback set-language(string);
+    callback create-list(string);
+    callback rename-list(string);
+    callback delete-list(int);
+    callback switch-list(int);
+    callback export-list();
+
+    VerticalLayout {
+        padding: 16px;
+        spacing: 12px;
+
+        TopBar {
+            view: root.view;
+            current-lang: root.current-lang;
+            list-name: root.list-name;
+            menu-open <=> root.menu-open;
+            show-tasks => { root.view = "tasks"; }
+            show-about => { root.view = "about"; }
+            toggle-theme => { root.toggle-theme(); }
+            set-language(lang) => { root.set-language(lang); }
+        }
+
+        if root.menu-open : MenuPanel {
+            lists-names: root.lists-names;
+            active-list: root.active-list;
+            current-name: root.list-name;
+            export-path: root.export-path;
+            switch-list(i) => { root.switch-list(i); }
+            delete-list(i) => { root.delete-list(i); }
+            create-list(text) => { root.create-list(text); }
+            rename-list(text) => { root.rename-list(text); }
+            export-list => { root.export-list(); }
+        }
+
+        if root.view == "tasks" : HorizontalLayout {
+            spacing: 16px;
+            // Absorbe el espacio extra al maximizar para que la barra
+            // superior mantenga su altura mínima.
+            vertical-stretch: 1;
+
+            VerticalLayout {
+                horizontal-stretch: 3;
+                TaskListView {
+                    tasks <=> root.tasks;
+                    selected-index <=> root.selected-index;
+                    pending-count <=> root.pending-count;
+                    new-task-title <=> root.new-task-title;
+                    filter-mode <=> root.filter-mode;
+                    list-collapsed <=> root.list-collapsed;
+                    add-task => { root.add-task(); }
+                    toggle-completed(index) => { root.toggle-completed(index); }
+                    toggle-star(index) => { root.toggle-star(index); }
+                    delete-task(index) => { root.delete-task(index); }
+                    select-task(index) => { root.select-task(index); }
+                }
+            }
+
+            DetailsPanel {
+                horizontal-stretch: 2;
+                detail-title <=> root.detail-title;
+                detail-text <=> root.detail-text;
+                detail-completed <=> root.detail-completed;
+                detail-starred <=> root.detail-starred;
+                selected-index: root.selected-index;
+                save => { root.save-details(); }
+                close => { root.clear-selection(); }
+                delete-selected => { root.delete-task(root.selected-index); }
+                toggle-star => { root.toggle-detail-star(); }
+            }
+        }
+
+        if root.view == "about" : AboutView {
+            vertical-stretch: 1;
+            about-dev: root.about-dev;
+            about-project: root.about-project;
+            about-version: root.about-version;
+            about-github: root.about-github;
+            about-portfolio: root.about-portfolio;
+            about-donate: root.about-donate;
+            about-linkedin: root.about-linkedin;
+            open-url(url) => { root.open-url(url); }
+        }
+    }
+}

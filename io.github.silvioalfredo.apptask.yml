@@ -1,0 +1,47 @@
+app-id: io.github.silvioalfredo.apptask
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+command: app-task
+# La app no necesita red: los enlaces se abren vía portal (xdg-open).
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+  # Datos persistentes en el host (listas, config)
+  - --persist=.local/share/app-task
+  # Exportar JSON a ~/Documentos real
+  - --filesystem=xdg-documents
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  env:
+    CARGO_NET_OFFLINE: 'true'
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /share/doc
+  - /share/man
+  - '*.a'
+  - '*.la'
+modules:
+  # PASO PREVIO (con red, una vez por cambio de Cargo.lock):
+  #   python3 flatpak-cargo-generator.py Cargo.lock -o cargo-sources.json
+  # Ver: https://github.com/flatpak/flatpak-builder-tools/tree/master/cargo
+  - name: app-task
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/SilvioAlfredo/app-task.git
+        tag: v0.1.0
+      - type: file
+        path: cargo-sources.json
+    build-commands:
+      - cargo --offline fetch --manifest-path Cargo.toml
+      - cargo --offline build --release --verbose
+      - install -Dm755 target/release/app-task /app/bin/app-task
+      - install -Dm644 data/io.github.silvioalfredo.apptask.desktop /app/share/applications/io.github.silvioalfredo.apptask.desktop
+      - install -Dm644 data/io.github.silvioalfredo.apptask.metainfo.xml /app/share/metainfo/io.github.silvioalfredo.apptask.metainfo.xml
+      - install -Dm644 data/icons/hicolor/scalable/apps/io.github.silvioalfredo.apptask.svg /app/share/icons/hicolor/scalable/apps/io.github.silvioalfredo.apptask.svg

@@ -1,0 +1,248 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2026-10-12 19:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ui/components/top_bar.slint:42
+msgctxt "TopBar"
+msgid "📋 Tareas"
+msgstr ""
+
+#: ui/components/top_bar.slint:47
+msgctxt "TopBar"
+msgid "ℹ Acerca de"
+msgstr ""
+
+#: ui/components/top_bar.slint:52
+msgctxt "TopBar"
+msgid "☀ Claro"
+msgstr ""
+
+#: ui/components/top_bar.slint:52
+msgctxt "TopBar"
+msgid "🌙 Oscuro"
+msgstr ""
+
+#: ui/components/pending_header.slint:20
+msgctxt "PendingHeader"
+msgid "Pending"
+msgstr ""
+
+#: ui/components/add_task_bar.slint:17
+msgctxt "AddTaskBar"
+msgid "Nueva tarea..."
+msgstr ""
+
+#: ui/components/add_task_bar.slint:21
+msgctxt "AddTaskBar"
+msgid "Añadir"
+msgstr ""
+
+#: ui/components/filter_bar.slint:17
+msgctxt "FilterBar"
+msgid "Todas"
+msgstr ""
+
+#: ui/components/filter_bar.slint:22
+msgctxt "FilterBar"
+msgid "Pendientes"
+msgstr ""
+
+#: ui/components/filter_bar.slint:27
+msgctxt "FilterBar"
+msgid "Hechas"
+msgstr ""
+
+#: ui/components/filter_bar.slint:32
+msgctxt "FilterBar"
+msgid "★ Destacadas"
+msgstr ""
+
+#: ui/components/menu_panel.slint:29
+msgctxt "MenuPanel"
+msgid "Mis listas"
+msgstr ""
+
+#: ui/components/menu_panel.slint:47
+msgctxt "MenuPanel"
+msgid "Abrir"
+msgstr ""
+
+#: ui/components/menu_panel.slint:62
+msgctxt "MenuPanel"
+msgid "+ Nueva lista"
+msgstr ""
+
+#: ui/components/menu_panel.slint:66
+msgctxt "MenuPanel"
+msgid "Renombrar"
+msgstr ""
+
+#: ui/components/menu_panel.slint:70
+msgctxt "MenuPanel"
+msgid "Exportar JSON"
+msgstr ""
+
+#: ui/components/menu_panel.slint:79
+msgctxt "MenuPanel"
+msgid "Nombre de la nueva lista..."
+msgstr ""
+
+#: ui/components/menu_panel.slint:82 ui/components/menu_panel.slint:95
+msgctxt "MenuPanel"
+msgid "Nueva lista"
+msgstr ""
+
+#: ui/components/menu_panel.slint:92
+msgctxt "MenuPanel"
+msgid "Guardar"
+msgstr ""
+
+#: ui/components/menu_panel.slint:105
+msgctxt "MenuPanel"
+msgid "Cancelar"
+msgstr ""
+
+#: ui/components/menu_panel.slint:111
+msgctxt "MenuPanel"
+msgid "Exportado a {}"
+msgstr ""
+
+#: ui/views/details_panel.slint:27
+msgctxt "DetailsPanel"
+msgid "Detalles de la tarea"
+msgstr ""
+
+#: ui/views/details_panel.slint:37
+msgctxt "DetailsPanel"
+msgid "Título"
+msgstr ""
+
+#: ui/views/details_panel.slint:43
+msgctxt "DetailsPanel"
+msgid "Título de la tarea"
+msgstr ""
+
+#: ui/views/details_panel.slint:49
+msgctxt "DetailsPanel"
+msgid "Completada"
+msgstr ""
+
+#: ui/views/details_panel.slint:53
+msgctxt "DetailsPanel"
+msgid "★ Destacada"
+msgstr ""
+
+#: ui/views/details_panel.slint:53
+msgctxt "DetailsPanel"
+msgid "☆ Destacar"
+msgstr ""
+
+#: ui/views/details_panel.slint:59
+msgctxt "DetailsPanel"
+msgid "Descripción / notas"
+msgstr ""
+
+#: ui/views/details_panel.slint:65
+msgctxt "DetailsPanel"
+msgid "Agrega detalles, pasos, enlaces..."
+msgstr ""
+
+#: ui/views/details_panel.slint:72
+msgctxt "DetailsPanel"
+msgid "Guardar"
+msgstr ""
+
+#: ui/views/details_panel.slint:77
+msgctxt "DetailsPanel"
+msgid "Cerrar"
+msgstr ""
+
+#: ui/views/details_panel.slint:81
+msgctxt "DetailsPanel"
+msgid "Eliminar"
+msgstr ""
+
+#: ui/views/details_panel.slint:86
+msgctxt "DetailsPanel"
+msgid ""
+"Haz clic en una tarea para ver su descripción. Los cambios se guardan con "
+"Guardar."
+msgstr ""
+
+#: ui/views/details_panel.slint:96
+msgctxt "DetailsPanel"
+msgid "Haz clic en cualquier tarea de la lista para ver su descripción aquí."
+msgstr ""
+
+#: ui/views/details_panel.slint:102
+msgctxt "DetailsPanel"
+msgid ""
+"Puedes marcar ✓, destacar ★, filtrar y añadir tareas nuevas. Todo se "
+"guarda automáticamente."
+msgstr ""
+
+#: ui/views/about_view.slint:27
+msgctxt "AboutView"
+msgid "App Task {}"
+msgstr ""
+
+#: ui/views/about_view.slint:33
+msgctxt "AboutView"
+msgid "por {}"
+msgstr ""
+
+#: ui/views/about_view.slint:39
+msgctxt "AboutView"
+msgid ""
+"Gestor de listas de tareas de escritorio: checklist con descripciones, "
+"filtros por estado, destacados, tema claro/oscuro y guardado local "
+"automático en JSON. Desarrollado en Rust con interfaz declarativa en Slint, "
+"para Linux (Fedora). Sin cuentas ni nube: tus tareas quedan en tu equipo, en "
+"~/.local/share/app-task/tasks.json."
+msgstr ""
+
+#: ui/views/about_view.slint:48
+msgctxt "AboutView"
+msgid "GitHub"
+msgstr ""
+
+#: ui/views/about_view.slint:62 ui/views/about_view.slint:82
+#: ui/views/about_view.slint:62 ui/views/about_view.slint:82
+msgctxt "AboutView"
+msgid "Abrir"
+msgstr ""
+
+#: ui/views/about_view.slint:68
+msgctxt "AboutView"
+msgid "Portafolio"
+msgstr ""
+
+#: ui/views/about_view.slint:88
+msgctxt "AboutView"
+msgid "LinkedIn"
+msgstr ""
+
+#: ui/views/about_view.slint:108
+msgctxt "AboutView"
+msgid "Apoyar el proyecto"
+msgstr ""
+
+#: ui/views/about_view.slint:122
+msgctxt "AboutView"
+msgid "♥ Donar con PayPal"
+msgstr ""
+
+#: ui/app.slint:11
+msgctxt "App"
+msgid "App Task - Lista de tareas"
+msgstr ""

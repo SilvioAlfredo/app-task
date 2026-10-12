@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=App Task
+Name[es]=App Task
+GenericName=Task list manager
+GenericName[es]=Gestor de listas de tareas
+Comment=Checklists with descriptions, filters and local saving (Rust + Slint)
+Comment[es]=Checklist con descripciones, filtros y guardado local (Rust + Slint)
+Exec=app-task
+Icon=io.github.silvioalfredo.apptask
+Terminal=false
+Categories=Office;ProjectManagement;
+Keywords=tasks;todo;checklist;tareas;pendientes;
+Keywords[es]=tareas;pendientes;checklist;productividad;
+StartupWMClass=app-task

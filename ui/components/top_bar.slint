@@ -1,0 +1,70 @@
+// App Task — task-list manager (Rust + Slint).
+// Copyright (C) 2026 Alfredo Riveros.
+// SPDX-License-Identifier: GPL-3.0-only
+// See LICENSE for details.
+import { Button } from "std-widgets.slint";
+import { AppTheme } from "../theme.slint";
+
+// Barra superior: menú ☰ + título de la lista + navegación + tema + idioma.
+export component TopBar inherits HorizontalLayout {
+    in property <string> view;
+    in property <string> current-lang;
+    in property <string> list-name;
+    in-out property <bool> menu-open;
+    callback show-tasks();
+    callback show-about();
+    callback toggle-theme();
+    callback set-language(string);
+
+    spacing: 8px;
+    alignment: space-between;
+
+    HorizontalLayout {
+        spacing: 8px;
+
+        Button {
+            text: "☰";
+            clicked => {
+                root.menu-open = !root.menu-open;
+            }
+        }
+
+        Text {
+            text: root.list-name;
+            font-size: 20px;
+            font-weight: 700;
+            color: AppTheme.text;
+            vertical-alignment: center;
+            overflow: elide;
+        }
+    }
+
+    HorizontalLayout {
+        spacing: 6px;
+
+        Button {
+            text: @tr("📋 Tareas");
+            primary: root.view == "tasks";
+            clicked => { root.show-tasks(); }
+        }
+        Button {
+            text: @tr("ℹ Acerca de");
+            primary: root.view == "about";
+            clicked => { root.show-about(); }
+        }
+        Button {
+            text: AppTheme.dark-mode ? @tr("☀ Claro") : @tr("🌙 Oscuro");
+            clicked => { root.toggle-theme(); }
+        }
+        Button {
+            text: "ES";
+            primary: root.current-lang == "es";
+            clicked => { root.set-language("es"); }
+        }
+        Button {
+            text: "EN";
+            primary: root.current-lang == "en";
+            clicked => { root.set-language("en"); }
+        }
+    }
+}

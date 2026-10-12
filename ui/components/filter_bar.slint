@@ -1,0 +1,41 @@
+// App Task — task-list manager (Rust + Slint).
+// Copyright (C) 2026 Alfredo Riveros.
+// SPDX-License-Identifier: GPL-3.0-only
+// See LICENSE for details.
+import { Button } from "std-widgets.slint";
+import { AppTheme } from "../theme.slint";
+
+// Filtros: todas / pendientes / hechas / destacadas.
+export component FilterBar inherits Rectangle {
+    in property <string> filter-mode;
+    callback set-filter(string);
+
+    background: AppTheme.card-bg;
+
+    HorizontalLayout {
+        padding: 8px;
+        spacing: 6px;
+        alignment: start;
+
+        Button {
+            text: @tr("Todas");
+            primary: root.filter-mode == "all";
+            clicked => { root.set-filter("all"); }
+        }
+        Button {
+            text: @tr("Pendientes");
+            primary: root.filter-mode == "pending";
+            clicked => { root.set-filter("pending"); }
+        }
+        Button {
+            text: @tr("Hechas");
+            primary: root.filter-mode == "done";
+            clicked => { root.set-filter("done"); }
+        }
+        Button {
+            text: @tr("★ Destacadas");
+            primary: root.filter-mode == "starred";
+            clicked => { root.set-filter("starred"); }
+        }
+    }
+}

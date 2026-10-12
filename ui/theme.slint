@@ -1,0 +1,22 @@
+// App Task — task-list manager (Rust + Slint).
+// Copyright (C) 2026 Alfredo Riveros.
+// SPDX-License-Identifier: GPL-3.0-only
+// See LICENSE for details.
+// Paleta centralizada claro/oscuro.
+// Uso: import { AppTheme } from "../theme.slint";  →  AppTheme.card-bg, etc.
+export global AppTheme {
+    in-out property <bool> dark-mode: true;
+
+    out property <color> window-bg: dark-mode ? #101010 : #eef0f2;
+    out property <color> card-bg: dark-mode ? #1e1e1e : white;
+    out property <color> header-bg: dark-mode ? #262626 : #e4e6e8;
+    out property <color> row-bg: dark-mode ? #232323 : white;
+    out property <color> row-selected: dark-mode ? #2d2d2d : #cfe2ff;
+    out property <color> text: dark-mode ? white : #111111;
+    out property <color> text-strong: dark-mode ? white : #111111;
+    out property <color> text-muted: dark-mode ? #aaaaaa : #555555;
+    out property <color> text-faint: dark-mode ? #666666 : #888888;
+    out property <color> text-pending: dark-mode ? #cccccc : #333333;
+    out property <color> text-preview: dark-mode ? #888888 : #555555;
+    out property <color> link: #4da6ff;
+}

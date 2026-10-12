@@ -1,0 +1,17 @@
+[package]
+name = "app-task"
+version = "0.1.0"
+edition = "2021"
+authors = ["Alfredo Riveros"]
+description = "Desktop task-list manager with checklists and descriptions (Rust + Slint)"
+homepage = "https://silvioalfredo.github.io/Portafolio-Riveros-Silvio/"
+repository = "https://github.com/SilvioAlfredo/app-task"
+license = "GPL-3.0-only"
+
+[dependencies]
+slint = "1.18"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[build-dependencies]
+slint-build = "1.18"

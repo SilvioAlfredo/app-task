@@ -1,0 +1,113 @@
+// App Task — task-list manager (Rust + Slint).
+// Copyright (C) 2026 Alfredo Riveros.
+// SPDX-License-Identifier: GPL-3.0-only
+// See LICENSE for details.
+import { Button, CheckBox, LineEdit, TextEdit } from "std-widgets.slint";
+import { AppTheme } from "../theme.slint";
+
+// Panel derecho: ver/editar título, estado y descripción.
+export component DetailsPanel inherits Rectangle {
+    in-out property <string> detail-title;
+    in-out property <string> detail-text;
+    in-out property <bool> detail-completed;
+    in-out property <bool> detail-starred;
+    in property <int> selected-index;
+
+    callback save();
+    callback close();
+    callback delete-selected();
+    callback toggle-star();
+
+    background: AppTheme.card-bg;
+    border-radius: 10px;
+    clip: true;
+
+    VerticalLayout {
+        padding: 16px;
+        spacing: 10px;
+        alignment: start;
+
+        Text {
+            text: @tr("Detalles de la tarea");
+            font-size: 16px;
+            font-weight: 700;
+            color: AppTheme.text;
+        }
+
+        if root.selected-index >= 0 : VerticalLayout {
+            spacing: 10px;
+
+            Text {
+                text: @tr("Título");
+                color: AppTheme.text-muted;
+                font-size: 13px;
+            }
+            LineEdit {
+                text <=> root.detail-title;
+                placeholder-text: @tr("Título de la tarea");
+            }
+
+            HorizontalLayout {
+                spacing: 10px;
+                CheckBox {
+                    text: @tr("Completada");
+                    checked <=> root.detail-completed;
+                }
+                Button {
+                    text: root.detail-starred ? @tr("★ Destacada") : @tr("☆ Destacar");
+                    clicked => { root.toggle-star(); }
+                }
+            }
+
+            Text {
+                text: @tr("Descripción / notas");
+                color: AppTheme.text-muted;
+                font-size: 13px;
+            }
+            TextEdit {
+                text <=> root.detail-text;
+                placeholder-text: @tr("Agrega detalles, pasos, enlaces...");
+                min-height: 180px;
+            }
+
+            HorizontalLayout {
+                spacing: 8px;
+                Button {
+                    text: @tr("Guardar");
+                    primary: true;
+                    clicked => { root.save(); }
+                }
+                Button {
+                    text: @tr("Cerrar");
+                    clicked => { root.close(); }
+                }
+                Button {
+                    text: @tr("Eliminar");
+                    clicked => { root.delete-selected(); }
+                }
+            }
+            Text {
+                text: @tr("Haz clic en una tarea para ver su descripción. Los cambios se guardan con Guardar.");
+                color: AppTheme.text-faint;
+                font-size: 12px;
+                wrap: word-wrap;
+            }
+        }
+
+        if root.selected-index < 0 : VerticalLayout {
+            spacing: 8px;
+            Text {
+                text: @tr("Haz clic en cualquier tarea de la lista para ver su descripción aquí.");
+                color: AppTheme.text-preview;
+                font-size: 14px;
+                wrap: word-wrap;
+            }
+            Text {
+                text: @tr("Puedes marcar ✓, destacar ★, filtrar y añadir tareas nuevas. Todo se guarda automáticamente.");
+                color: AppTheme.text-faint;
+                font-size: 12px;
+                wrap: word-wrap;
+            }
+        }
+    }
+}

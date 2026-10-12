@@ -1,0 +1,83 @@
+// App Task — task-list manager (Rust + Slint).
+// Copyright (C) 2026 Alfredo Riveros.
+// SPDX-License-Identifier: GPL-3.0-only
+// See LICENSE for details.
+import { Button, CheckBox } from "std-widgets.slint";
+import { AppTheme } from "../theme.slint";
+import { TaskData } from "../models.slint";
+
+// Una fila de la checklist: checkbox + título + preview + acciones.
+// El padre resuelve el índice con closures (no se pasa idx por dentro).
+export component TaskRow inherits Rectangle {
+    in property <TaskData> task;
+    in property <bool> selected;
+
+    callback toggled();
+    callback chosen();
+    callback starred();
+    callback deleted();
+
+    background: selected ? AppTheme.row-selected : AppTheme.row-bg;
+    height: task.details != "" ? 64px : 48px;
+    clip: true;
+
+    TouchArea {
+        width: 100%;
+        height: 100%;
+        clicked => { root.chosen(); }
+    }
+
+    HorizontalLayout {
+        padding-left: 12px;
+        padding-right: 8px;
+        spacing: 6px;
+        alignment: space-between;
+
+        HorizontalLayout {
+            spacing: 10px;
+
+            CheckBox {
+                checked: task.completed;
+                toggled => { root.toggled(); }
+            }
+
+            VerticalLayout {
+                spacing: 1px;
+                alignment: center;
+
+                Text {
+                    text: task.title;
+                    color: task.completed ? #777777 : AppTheme.text;
+                    font-size: 14px;
+                    vertical-alignment: center;
+                    overflow: elide;
+                }
+
+                if task.details != "" : Text {
+                    text: task.details;
+                    color: AppTheme.text-preview;
+                    font-size: 12px;
+                    vertical-alignment: center;
+                    overflow: elide;
+                }
+            }
+        }
+
+        HorizontalLayout {
+            spacing: 2px;
+
+            Button {
+                text: "✎";
+                clicked => { root.chosen(); }
+            }
+            Button {
+                text: task.starred ? "★" : "☆";
+                clicked => { root.starred(); }
+            }
+            Button {
+                text: "🗑";
+                clicked => { root.deleted(); }
+            }
+        }
+    }
+}
